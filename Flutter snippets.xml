@@ -1,0 +1,88 @@
+<templateSet group="Flutter snippets">
+  <template name="sbh" value="const SizedBox(height: $height$)," description="SizedBox with height" toReformat="false" toShortenFQNames="true">
+    <variable name="height" expression="" defaultValue="16" alwaysStopAt="true" />
+    <context>
+      <option name="FLUTTER" value="true" />
+    </context>
+  </template>
+  <template name="sbw" value="const SizedBox(width: $width$)," description="SizedBox with width" toReformat="false" toShortenFQNames="true">
+    <variable name="width" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="FLUTTER" value="true" />
+    </context>
+  </template>
+  <template name="localization" value="Localization.of(context).$text$," description="Text localization" toReformat="false" toShortenFQNames="true">
+    <variable name="text" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="DART_STATEMENT" value="true" />
+    </context>
+  </template>
+  <template name="toJson" value="Map&lt;String, dynamic&gt; toJson() =&gt; _$$$NAME$ToJson(this);" description="To json" toReformat="false" toShortenFQNames="true">
+    <variable name="NAME" expression="dartClassName()" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="DART" value="true" />
+      <option name="DART_STATEMENT" value="false" />
+      <option name="DART_TOPLEVEL" value="false" />
+    </context>
+  </template>
+  <template name="gql query" value=" final result = await _client&#10;        .query$$$QueryName$(Options$$Query$$$QueryName$(variables: Variables$$Query$$$QueryName$(id: id)));&#10;final resultModel = result.parsedData!.$QueryName$!;" description="Graphql codegen query" toReformat="false" toShortenFQNames="true">
+    <variable name="QueryName" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="DART_STATEMENT" value="true" />
+    </context>
+  </template>
+  <template name="gql mutate" value=" final result = await _client&#10;        .mutate$$$MutationName$(Options$$Mutation$$$MutationName$(variables: Variables$$Mutation$$$MutationName$(id: id)));&#10;final resultModel = result.parsedData!.$MutationName$!;" description="Graphql codegen mutation" toReformat="false" toShortenFQNames="true">
+    <variable name="MutationName" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="DART_STATEMENT" value="true" />
+    </context>
+  </template>
+  <template name="bloc" value="import 'package:flutter_bloc/flutter_bloc.dart';&#10;&#10;/// $Name$Bloc&#10;final class $Name$Bloc extends Bloc&lt;$Name$Event, $Name$State&gt; {&#10;  final $Name$Repository _repository;&#10;&#10;  /// Create an [$Name$Bloc]&#10;  ///&#10;  /// This specializes required initialState as it should be preloaded.&#10;  $Name$Bloc({&#10;    required $Name$Repository repository,&#10;  })  : _repository = repository,&#10;        super(const $Name$State.idle(data: [])) {&#10;    on&lt;$Name$Event&gt;(&#10;      (event, emit) =&gt; switch (event) {&#10;        final _Fetch$Name$ e =&gt; _fetch$Name$(e, emit),&#10;      },&#10;    );&#10;  }&#10;&#10;  Future&lt;void&gt; _fetch$Name$(&#10;    _Fetch$Name$ event,&#10;    Emitter&lt;$Name$State&gt; emit,&#10;  ) async {&#10;    emit($Name$State.processing(data: state.data));&#10;&#10;    try {&#10;      final data = await _repository.fetch$Name$();&#10;      emit(&#10;        $Name$State.idle(data: data),&#10;      );&#10;    } on Object catch (e, stackTrace) {&#10;      emit(&#10;        $Name$State.error(&#10;          data: state.data,&#10;          error: e,&#10;        ),&#10;      );&#10;      onError(e, stackTrace);&#10;    }&#10;  }&#10;}&#10;&#10;/// Events for [$Name$Bloc]&#10;sealed class $Name$Event {&#10;  const $Name$Event();&#10;&#10;  const factory $Name$Event.fetch$Name$() = _Fetch$Name$;&#10;}&#10;&#10;final class _Fetch$Name$ extends $Name$Event {&#10;  const _Fetch$Name$();&#10;}&#10;&#10;/// States for [$Name$Bloc]&#10;sealed class $Name$State {&#10;  const $Name$State({required this.data});&#10;&#10;  /// Data of type [$DataType$]&#10;  final $DataType$ data;&#10;&#10;  /// Idle state, state machine is doing nothing&#10;  const factory $Name$State.idle({&#10;    required $DataType$ data,&#10;  }) = $Name$StateIdle;&#10;    &#10;  /// Processing state&#10;  const factory $Name$State.processing({&#10;    required $DataType$ data,&#10;  }) = $Name$StateProcessing;&#10;&#10;  /// Error state&#10;  const factory $Name$State.error({&#10;    required $DataType$ data,&#10;    required Object error,&#10;  }) = $Name$StateError;&#10;&#10;  /// Get error if state is error&#10;  Object? get error =&gt; switch (this) {&#10;        final $Name$StateError e =&gt; e.error,&#10;        _ =&gt; null,&#10;      };&#10;}&#10;&#10;final class $Name$StateIdle extends $Name$State {&#10;  const $Name$StateIdle({required super.data});&#10;&#10;  @override&#10;  bool operator ==(Object other) {&#10;    if (identical(this, other)) return true;&#10;&#10;    return other is $Name$StateIdle &amp;&amp; other.data == data;&#10;  }&#10;&#10;  @override&#10;  int get hashCode =&gt; Object.hashAll([data]);&#10;&#10;  @override&#10;  String toString() =&gt; '_$Name$StateIdle(status: $data)';&#10;}&#10;&#10;final class $Name$StateProcessing extends $Name$State {&#10;  const $Name$StateProcessing({required super.data});&#10;&#10;  @override&#10;  bool operator ==(Object other) {&#10;    if (identical(this, other)) return true;&#10;&#10;    return other is $Name$StateProcessing &amp;&amp; other.data == data;&#10;  }&#10;&#10;  @override&#10;  int get hashCode =&gt; Object.hashAll([data]);&#10;&#10;  @override&#10;  String toString() =&gt; '_$Name$StateProcessing(status: $data)';&#10;}&#10;&#10;final class $Name$StateError extends $Name$State {&#10;  @override&#10;  final Object error;&#10;&#10;  const $Name$StateError({&#10;    required this.error,&#10;    required super.data,&#10;  });&#10;&#10;  @override&#10;  bool operator ==(Object other) {&#10;    if (identical(this, other)) return true;&#10;&#10;    return other is $Name$StateError &amp;&amp;&#10;        other.data == data &amp;&amp;&#10;        other.error == error;&#10;  }&#10;&#10;  @override&#10;  int get hashCode =&gt; Object.hashAll([data, error]);&#10;&#10;  @override&#10;  String toString() =&gt;&#10;      '_$Name$StateError(status: $data, message: $error)';&#10;}&#10;" description="Bloc class" toReformat="false" toShortenFQNames="true">
+    <variable name="Name" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="DataType" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="DART_TOPLEVEL" value="true" />
+    </context>
+  </template>
+  <template name="bloc_freezed" value="import 'package:flutter_bloc/flutter_bloc.dart';&#10;import 'package:freezed_annotation/freezed_annotation.dart';&#10;&#10;part '$FILENAME$.freezed.dart';&#10;&#10;typedef _Event = $Subject$Event;&#10;typedef _State = $Subject$State;&#10;typedef _EventHandler = EventHandler&lt;_Event, _State&gt;;&#10;typedef _Emitter = Emitter&lt;_State&gt;;&#10;&#10;@freezed&#10;class $Subject$Event with _$$$Subject$Event {&#10;  const factory $Subject$Event.init() =&#10;      $Subject$InitEvent;&#10;}&#10;&#10;@freezed&#10;class $Subject$State with _$$$Subject$State {&#10;  const $Subject$State._();&#10;&#10;  const factory $Subject$State.initial() = $Subject$Initial;&#10;&#10;  const factory $Subject$State.loading() = $Subject$Loading;&#10;&#10;  const factory $Subject$State.error(String errorMessage) = $Subject$Error;&#10;&#10;  const factory $Subject$State.data(Object data) = $Subject$Data;&#10;}&#10;&#10;class $Subject$Bloc extends Bloc&lt;$Subject$Event, $Subject$State&gt; {&#10;  _EventHandler get _handler =&gt;&#10;      (event, emit) =&gt; event.map(init: (event) =&gt; _init(event, emit));&#10;&#10;  final Repository _repository;&#10;&#10;  $Subject$Bloc({required Repository repository})&#10;      : _repository = repository,&#10;        super(const $Subject$Initial()) {&#10;    on&lt;$Subject$Event&gt;(_handler);&#10;  }&#10;&#10;  Future&lt;void&gt; _init($Subject$InitEvent event, _Emitter emit) async {&#10;    try {&#10;      emit(const $Subject$State.loading());&#10;&#10;      final data = await _repository.fetchData();&#10;&#10;      emit($Subject$State.data(data));&#10;    } on Object catch(_) {&#10;      emit(const $Subject$Error('Error occurred'));&#10;      rethrow;&#10;    } &#10;  }&#10;}&#10;&#10;&#10;" description="Bloc class using freezed" toReformat="false" toShortenFQNames="true">
+    <variable name="Subject" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="FILENAME" expression="fileNameWithoutExtension()" defaultValue="" alwaysStopAt="false" />
+    <context>
+      <option name="DART_TOPLEVEL" value="true" />
+    </context>
+  </template>
+  <template name="freezedClass" value="@freezed&#10;class $NAME$ with _$$$NAME$ {&#10;}" description="Create a freezed Class" toReformat="true" toShortenFQNames="true">
+    <variable name="NAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="DART_TOPLEVEL" value="true" />
+    </context>
+  </template>
+  <template name="freezedConst" value="const factory $NAME$() = _$NAME$;" description="Create a basic freezed constructor" toReformat="false" toShortenFQNames="true">
+    <variable name="NAME" expression="dartClassName()" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="DART" value="true" />
+      <option name="DART_STATEMENT" value="false" />
+      <option name="DART_TOPLEVEL" value="false" />
+    </context>
+  </template>
+  <template name="freezedFromJson" value="factory $NAME$.fromJson(Map&lt;String, dynamic&gt; json) =&gt; _$$$NAME$FromJson(json);" description="Freate a freezed fromJson method" toReformat="true" toShortenFQNames="true">
+    <variable name="NAME" expression="dartClassName()" defaultValue="" alwaysStopAt="false" />
+    <context>
+      <option name="DART" value="true" />
+      <option name="DART_STATEMENT" value="false" />
+      <option name="DART_TOPLEVEL" value="false" />
+    </context>
+  </template>
+  <template name="freezedJsonPart" value="part '$FILENAME$.g.dart';&#10;" description="Add the json_serializabe part statement" toReformat="false" toShortenFQNames="true">
+    <variable name="FILENAME" expression="fileNameWithoutExtension()" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="DART_TOPLEVEL" value="true" />
+    </context>
+  </template>
+  <template name="freezedPart" value="part '$FILENAME$.freezed.dart';" description="Add a freezed part statement" toReformat="true" toShortenFQNames="true">
+    <variable name="FILENAME" expression="fileNameWithoutExtension()" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="DART_TOPLEVEL" value="true" />
+    </context>
+  </template>
+</templateSet>
