@@ -85,4 +85,17 @@
       <option name="DART_TOPLEVEL" value="true" />
     </context>
   </template>
+  <template name="dtoClass" value="import 'package:json_annotation/json_annotation.dart';&#10;&#10;part '$FILENAME$.g.dart';&#10;&#10;@JsonSerializable()&#10;class $Name$Dto {&#10;  final int id;&#10;  final String title;&#10;  final String description;&#10;&#10;  $Name$Dto({&#10;    required this.id,&#10;    required this.title,&#10;    required this.description,&#10;  });&#10;&#10;  Map&lt;String, dynamic&gt; toJson() =&gt; _$$$Name$DtoToJson(this);&#10;&#10;  factory $Name$Dto.fromJson(Map&lt;String, dynamic&gt; json) =&gt;&#10;      _$$$Name$DtoFromJson(json);&#10;}&#10;" description="Dto class" toReformat="false" toShortenFQNames="true">
+    <variable name="FILENAME" expression="fileNameWithoutExtension()" defaultValue="" alwaysStopAt="false" />
+    <variable name="Name" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="DART_TOPLEVEL" value="true" />
+    </context>
+  </template>
+  <template name="dataClass" value="/// [$1$] data class&#10;class $1$ {&#10;  /// Unique identifier of the user.&#10;  final int id;&#10;&#10;  /// Title of the [$1$].&#10;  final String title;&#10;&#10;  /// Description of the [$1$].&#10;  final String description;&#10;&#10;  /// Creates a new [$1$].&#10;  const $1$({&#10;    required this.id,&#10;    required this.title,&#10;    this.description = '',&#10;  });&#10;&#10;  /// Creates a copy of this object with the given values.&#10;  $1$ copyWith({&#10;    int? newId,&#10;    String? newTitle,&#10;    String? newDescription,&#10;  }) =&gt;&#10;      $1$(&#10;        id: newId ?? id,&#10;        title: newTitle ?? title,&#10;        description: newDescription ?? description,&#10;      );&#10;&#10;  @override&#10;  bool operator ==(Object other) =&gt;&#10;      identical(this, other) ||&#10;      other is $1$ &amp;&amp;&#10;          runtimeType == other.runtimeType &amp;&amp;&#10;          id == other.id &amp;&amp;&#10;          title == other.title &amp;&amp;&#10;          description == other.description;&#10;&#10;  @override&#10;  int get hashCode =&gt; Object.hash(id, title, description);&#10;&#10;  @override&#10;  String toString() =&gt;&#10;      '$1$(id: $id, title: $title, description: $description)';&#10;}&#10;" description="Data class" toReformat="false" toShortenFQNames="true">
+    <variable name="1" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="DART_TOPLEVEL" value="true" />
+    </context>
+  </template>
 </templateSet>
