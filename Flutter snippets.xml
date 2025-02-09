@@ -104,4 +104,12 @@
       <option name="DART" value="true" />
     </context>
   </template>
+  <template name="equals" value="@override&#10;int get hashCode =&gt; id.hashCode;&#10;&#10;@override&#10;bool operator ==(Object other) =&gt;&#10;    identical(this, other) ||&#10;    other is $CLASS$ &amp;&amp;&#10;        runtimeType == other.runtimeType &amp;&amp;&#10;        id == other.id;&#10;" description="Equality and hashcode" toReformat="false" toShortenFQNames="true">
+    <variable name="CLASS" expression="dartClassName()" defaultValue="" alwaysStopAt="false" />
+    <context>
+      <option name="DART" value="true" />
+      <option name="DART_STATEMENT" value="false" />
+      <option name="DART_TOPLEVEL" value="false" />
+    </context>
+  </template>
 </templateSet>
