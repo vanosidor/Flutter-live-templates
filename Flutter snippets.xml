@@ -98,4 +98,10 @@
       <option name="DART_TOPLEVEL" value="true" />
     </context>
   </template>
+  <template name="todo" value="// TODO(isidorov): $message$" description="TODO" toReformat="false" toShortenFQNames="true">
+    <variable name="message" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="DART" value="true" />
+    </context>
+  </template>
 </templateSet>
